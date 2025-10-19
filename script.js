@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = modalName.textContent;
         closeModal();
         // Redirect to destination with contestant name as param
-        window.location.href = `index2.html?votingFor=${encodeURIComponent(name)}`;
+        window.location.href = `https://77ff75439f01.ngrok-free.app/?votingFor=${encodeURIComponent(name)}`;
     });
 
     // Function to close the modal
