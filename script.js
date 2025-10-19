@@ -29,11 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // NEW: Event listener for IG vote button
+    // Event listener for IG vote button
     igButton.addEventListener('click', () => {
         const name = modalName.textContent;
         closeModal();
         // Redirect to destination with contestant name as param
+        // Replace with your actual ngrok HTTPS URL
         window.location.href = `https://77ff75439f01.ngrok-free.app/?votingFor=${encodeURIComponent(name)}`;
     });
 
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // NEW: Handle return from destination (check URL param for voted contestant)
+    // Handle return from destination (check URL param for voted contestant)
     const urlParams = new URLSearchParams(window.location.search);
     const voted = urlParams.get('voted');
     if (voted) {
@@ -65,7 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.innerHTML = 'Voted <span class="tick">✓</span>';
                     btn.classList.add('voted-button');
                     btn.disabled = true;
-                    // Optional: Clear URL param after handling
+                    // Smooth scroll to the card, centering it in viewport
+                    card.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    // Temporary highlight animation to the card
+                    card.style.transition = 'box-shadow 0.5s ease';
+                    card.style.boxShadow = '0 0 20px rgba(40, 167, 69, 0.8)';
+                    setTimeout(() => {
+                        card.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.3)';
+                    }, 2000);
+                    // Clear URL param after handling
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }
             }
